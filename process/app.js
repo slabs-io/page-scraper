@@ -20,7 +20,6 @@ var sampleData = {
 
 };
 
-
 /**
  * getData - passes in the config object from the client.
  * This function MUST exist and MUST return a promise.
@@ -28,7 +27,6 @@ var sampleData = {
 exports.getData = function(settings) {
 
     // this is the object saved from your the /input portion of the slab.
-    console.log(settings);
     var searchTerm  = settings.searchTerm;
     var fromDate    = settings.fromDate;
     var toDate      = settings.toDate;
