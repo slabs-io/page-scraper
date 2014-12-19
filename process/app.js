@@ -2,7 +2,6 @@
 
 var Q = require('q');
 
-
 // This is some sample data in reality this would be returned from some api.
 var sampleData = {
 
@@ -26,10 +25,13 @@ var sampleData = {
  * getData - passes in the config object from the client.
  * This function MUST exist and MUST return a promise.
  */
-exports.getData = function(config) {
+exports.getData = function(settings) {
 
     // this is the object saved from your the /input portion of the slab.
-    console.log(config);
+    console.log(settings);
+    var searchTerm  = settings.searchTerm;
+    var fromDate    = settings.fromDate;
+    var toDate      = settings.toDate;
 
     // Slabs works on a promise system - for this we use the excellent 'Q' library.
     var deferred = Q.defer();
