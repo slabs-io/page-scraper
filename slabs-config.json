@@ -1,0 +1,6 @@
+{
+  "name" : "sample api slab",
+  "type" : "api",
+  "connectionsIn" : 0,
+  "connectionsOut" : 3
+}
