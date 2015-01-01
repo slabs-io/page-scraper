@@ -1,4 +1,4 @@
-/* global $:false */
+/* global $:false, slabs:false */
 'use strict';
 
 // set the 'from' data as a date picker
@@ -35,6 +35,6 @@ var compileObject = function (){
   console.log(settings);
 
   // submit the data to the slabs core, this also triggers the close of the iFrame.
-  window.top.submitSlabData(settings);
+  slabs.send(settings);
 
 };
