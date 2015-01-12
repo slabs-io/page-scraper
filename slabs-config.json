@@ -3,6 +3,5 @@
   "type" : "source",
   "connectionsIn" : 0,
   "connectionsOut" : 3,
-  "categories" : ["date"],
-  "series" : ["mentions", "titleMentions"]
+  "values" : ["mentions", "titleMentions"]
 }

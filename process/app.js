@@ -1,24 +1,8 @@
 'use strict';
 
-var Q = require('q');
+var Q       = require('q');
+var scrap   = require('scrap');
 
-// This is some sample data in reality this would be returned from some api.
-var sampleData = {
-
-    dateFrom    : '1416654884000',
-    dateTo      : '1417000484000',
-    categories  : ['date'],
-    series      : ['tweets'],
-    data        : [
-        {date : '21/11/2014', tweets: '15'},
-        {date : '22/11/2014', tweets: '10'},
-        {date : '23/11/2014', tweets: '8'},
-        {date : '24/11/2014', tweets: '25'},
-        {date : '25/11/2014', tweets: '18'},
-        {date : '26/11/2014', tweets: '4'}
-    ]
-
-};
 
 /**
  * getData - passes in the config object from the client.
@@ -28,21 +12,36 @@ exports.getData = function(settings) {
 
     // this is the object saved from your the /input portion of the slab.
     var searchTerm  = settings.searchTerm;
-    var fromDate    = settings.fromDate;
-    var toDate      = settings.toDate;
+    var siteUrl     = settings.siteUrl;
 
     // Slabs works on a promise system - for this we use the excellent 'Q' library.
     var deferred = Q.defer();
 
-    // In this simple example we are using a timeout, this is simply to show the process is asynchronous.
-    setTimeout(function(){
+    var data = {
+        mentions : 0
+    };
 
-        // return your data like this...
-        deferred.resolve(sampleData);
+    scrap(siteUrl, function(err, $) {
 
-    },1000);
+        var pageContents = $('body').html();
+        var res = pageContents.match('/'+searchTerm+'/gi');
+        if(res){
+            // return your data like this...
+            data.mentions = res.length;
+            deferred.resolve(data);
+        }else{
+            // return your data like this...
+            deferred.resolve(data);
+        }
+
+    });
+
 
     // Always return your promise here.
     return deferred.promise;
 
 };
+
+exports.getData();
+
+

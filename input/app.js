@@ -7,15 +7,12 @@ var compileObject = function (){
 
   // gets the value of the input box
   var searchQuery   = $('#searchQuery').val();
-  // Get the from date in milliseconds
-  var fromDate      = $('#fromDate').data('DateTimePicker').getDate().valueOf();
-  // Get the to date in milliseconds
-  var toDate        = $('#toDate').data('DateTimePicker').getDate().valueOf();
+
+  var siteUrl       = $('#siteUrl').val();
 
   var settings = {
     searchTerm : searchQuery,
-    fromDate : fromDate,
-    toDate : toDate
+    siteUrl : siteUrl
   };
 
   console.log(settings);

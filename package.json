@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/slabs-io/slabs-source-example",
   "dependencies": {
-    "q": "^1.1.2"
+    "q": "^1.1.2",
+    "scrap": "^0.1.0"
   }
 }

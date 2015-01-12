@@ -16,7 +16,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.1",
-    "slabs.io.js": "~0.0.2"
+    "slabs.io.js": "~0.0.5"
   },
   "resolutions": {
     "bootstrap": "~3.3.1"
