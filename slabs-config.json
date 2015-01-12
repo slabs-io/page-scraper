@@ -1,5 +1,5 @@
 {
-  "name" : "slabs source example",
+  "name" : "page scraper",
   "type" : "source",
   "connectionsIn" : 0,
   "connectionsOut" : 3,
