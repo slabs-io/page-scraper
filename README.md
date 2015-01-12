@@ -1,4 +1,4 @@
-slabs-source-example
+page-scraper
 =============
 
 ##A sample source module for use with slabs.io.
