@@ -1,21 +1,21 @@
 {
   "name": "sample",
   "version": "1.0.0",
-  "description": "Sample Slabs API Module",
+  "description": "Sample Slabs Source Module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/slabs-io/api-slab-demo.git"
+    "url": "https://github.com/slabs-io/slabs-source-example.git"
   },
   "author": "Elliot Agro",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/slabs-io/api-slab-demo/issues"
+    "url": "https://github.com/slabs-io/slabs-source-example/issues"
   },
-  "homepage": "https://github.com/slabs-io/api-slab-demo",
+  "homepage": "https://github.com/slabs-io/slabs-source-example",
   "dependencies": {
     "q": "^1.1.2"
   }
