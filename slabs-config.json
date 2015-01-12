@@ -1,6 +1,8 @@
 {
-  "name" : "sample api slab",
-  "type" : "api",
+  "name" : "slabs source example",
+  "type" : "source",
   "connectionsIn" : 0,
-  "connectionsOut" : 3
+  "connectionsOut" : 3,
+  "categories" : ["date"],
+  "series" : ["mentions", "titleMentions"]
 }

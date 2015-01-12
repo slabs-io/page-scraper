@@ -1,20 +1,6 @@
 /* global $:false, slabs:false */
 'use strict';
 
-// set the 'from' data as a date picker
-$('#fromDate').datetimepicker({
-  defaultDate: new Date(),
-  pickTime: false
-});
-
-// set the 'to' data as a date picker with a default value of one week in the future.
-var toDate = new Date();
-toDate.setDate(toDate.getDate() + 7);
-$('#toDate').datetimepicker({
-  defaultDate: toDate,
-  pickTime: false
-});
-
 // Send the settings object to the slabs core
 // This object will then be passed to your back-end slabs process.
 var compileObject = function (){

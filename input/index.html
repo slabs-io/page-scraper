@@ -2,52 +2,38 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://rawgit.com/Eonasdan/bootstrap-datetimepicker/master/build/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="./styles.css">
-
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="../lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
 </head>
 <body>
 
-    <div class="page-header">
-        <h1>Sample Slab <br/><small>Returns number of 'internet mentions' for your search term, over a specific date.</small></h1>
+    <div class="container-fluid">
+
+        <div class="page-header">
+            <h1>Sample Slab <br/><small>Returns number of 'mentions' for your search term, on a specific website.</small></h1>
+        </div>
+
+        <form role="form">
+            <div class="form-group">
+                <label for="searchQuery">Search Query</label>
+                <input class="form-control" id="searchQuery" placeholder="Enter search text">
+            </div>
+            <div class="form-group">
+                <label for="siteUrl">Website URL</label>
+                <input class="form-control" id="siteUrl" placeholder="Enter website URL">
+            </div>
+            <button type="button" class="btn btn-default" onclick="compileObject()">Done</button>
+        </form>
+
     </div>
 
-    <form role="form">
-        <div class="form-group">
-            <label for="searchQuery">Search Query</label>
-            <input class="form-control" id="searchQuery" placeholder="Enter search text">
-        </div>
-
-        <div class="form-group">
-            <label for="fromDate">From Date:</label>
-            <div class="input-group date" id="fromDate">
-                <input type="text" class="form-control"  />
-                <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
-            </div>
-        </div>
-
-        <label for="fromDate">To Date : </label>
-        <div class="form-group">
-            <div class="input-group date" id="toDate">
-                <input type="text" class="form-control" />
-                <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
-            </div>
-        </div>
-
-        <button type="button" class="btn btn-default" onclick="compileObject()">Done</button>
-
-    </form>
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
-    <script type="text/javascript" src="https://rawgit.com/Eonasdan/bootstrap-datetimepicker/master/src/js/bootstrap-datetimepicker.js"></script>
-    <script src="/dist/slabs.io.js"></script>
-    <script type="text/javascript" src="./app.js"></script>
+    <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../lib/moment/moment.js"></script>
+    <script type="text/javascript" src="../lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="../lib/slabs.io.js/dist/slabs.io.js"></script>
+    <script type="text/javascript" src="app.js"></script>
 
 </body>
 </html>
