@@ -1,7 +1,7 @@
-api-slab-demo
+slabs-source-example
 =============
 
-##A sample api module for use with slabs.io.
+##A sample source module for use with slabs.io.
 
 Before use run :
 ```
