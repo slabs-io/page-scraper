@@ -1,21 +1,21 @@
 {
   "name": "sample",
   "version": "1.0.0",
-  "description": "Sample Slabs Source Module",
+  "description": "Page Scraper",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/slabs-io/slabs-source-example.git"
+    "url": "https://github.com/slabs-io/page-scraper.git"
   },
   "author": "Elliot Agro",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/slabs-io/slabs-source-example/issues"
+    "url": "https://github.com/slabs-io/page-scraper/issues"
   },
-  "homepage": "https://github.com/slabs-io/slabs-source-example",
+  "homepage": "https://github.com/slabs-io/page-scraper",
   "dependencies": {
     "q": "^1.1.2",
     "scrap": "^0.1.0"

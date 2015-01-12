@@ -1,7 +1,7 @@
 {
-  "name": "slabs-source-example",
+  "name": "page-scraper",
   "version": "0.0.0",
-  "homepage": "https://github.com/slabs-io/slabs-source-example.git",
+  "homepage": "https://github.com/slabs-io/page-scraper.git",
   "authors": [
     "Elliot Agro <elliot@slabs.io>"
   ],

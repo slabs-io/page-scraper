@@ -1,7 +1,7 @@
 page-scraper
 =============
 
-##A sample source module for use with slabs.io.
+##A page scraping module for use with slabs.io.
 
 Before use run :
 ```
