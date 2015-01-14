@@ -5,13 +5,42 @@ var scrap   = require('scrap');
 
 
 /**
+ * getLabel - passes in the config object from the client.
+ * This function MUST exist and MUST return a string.
+ */
+exports.getLabel = function(property, settings){
+
+    // this is the object saved from your the /input portion of the slab.
+    var searchTerm  = 'example';
+    var siteUrl     = 'http://www.dailymail.co.uk';
+
+    if(settings && settings.searchTerm && settings.siteUrl){
+        searchTerm  = settings.searchTerm;
+        siteUrl     = settings.siteUrl;
+    }
+
+    if(property == 'mentions'){
+        return searchTerm + ' on the '+siteUrl;
+    }
+
+    if(property == 'doubleMentions'){
+        return searchTerm + ' on the '+siteUrl+' - doubled';
+    }
+
+    return 'bad property name';
+
+};
+
+
+
+/**
  * getData - passes in the config object from the client.
  * This function MUST exist and MUST return a promise.
  */
 exports.getData = function(settings) {
 
     // this is the object saved from your the /input portion of the slab.
-    var searchTerm  = 'terror';
+    var searchTerm  = 'example';
     var siteUrl     = 'http://www.dailymail.co.uk';
 
     if(settings && settings.searchTerm && settings.siteUrl){
@@ -39,6 +68,7 @@ exports.getData = function(settings) {
         if(res){
             // return your data like this...
             data.mentions = res.length;
+            data.doubleMentions = res.length * 2;
             deferred.resolve(data);
             console.log('data : ');
             console.log(data);
@@ -56,7 +86,5 @@ exports.getData = function(settings) {
     return deferred.promise;
 
 };
-
-exports.getData();
 
 
