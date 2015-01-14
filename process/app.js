@@ -14,7 +14,7 @@ exports.getData = function(settings) {
     var searchTerm  = 'terror';
     var siteUrl     = 'http://www.dailymail.co.uk';
 
-    if(settings){
+    if(settings && settings.searchTerm && settings.siteUrl){
         searchTerm  = settings.searchTerm;
         siteUrl     = settings.siteUrl;
     }
