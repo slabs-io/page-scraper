@@ -11,8 +11,8 @@ var scrap   = require('scrap');
 exports.getData = function(settings) {
 
     // this is the object saved from your the /input portion of the slab.
-    var searchTerm  = settings.searchTerm;
-    var siteUrl     = settings.siteUrl;
+    var searchTerm  = settings.searchTerm || 'lab';
+    var siteUrl     = settings.siteUrl || 'http://www.dailymail.co.uk';
 
     // Slabs works on a promise system - for this we use the excellent 'Q' library.
     var deferred = Q.defer();
