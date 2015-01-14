@@ -11,7 +11,7 @@ var scrap   = require('scrap');
 exports.getData = function(settings) {
 
     // this is the object saved from your the /input portion of the slab.
-    var searchTerm  = 'lab';
+    var searchTerm  = 'terror';
     var siteUrl     = 'http://www.dailymail.co.uk';
 
     if(settings){
@@ -26,17 +26,27 @@ exports.getData = function(settings) {
         mentions : 0
     };
 
+
     scrap(siteUrl, function(err, $) {
 
+        if(err){
+            console.error(err);
+        }
+
         var pageContents = $('body').html();
-        var res = pageContents.match('/'+searchTerm+'/gi');
+        var res = pageContents.match(new RegExp(searchTerm, 'gi'));
+
         if(res){
             // return your data like this...
             data.mentions = res.length;
             deferred.resolve(data);
+            console.log('data : ');
+            console.log(data);
         }else{
             // return your data like this...
             deferred.resolve(data);
+            console.log('no data : ');
+            console.log(data);
         }
 
     });
