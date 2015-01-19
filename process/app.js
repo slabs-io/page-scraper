@@ -23,10 +23,6 @@ exports.getLabel = function(property, settings){
         return searchTerm + ' on the '+siteUrl;
     }
 
-    if(property == 'doubleMentions'){
-        return searchTerm + ' on the '+siteUrl+' - doubled';
-    }
-
     return 'bad property name';
 
 };
@@ -68,7 +64,6 @@ exports.getData = function(settings) {
         if(res){
             // return your data like this...
             data.mentions = res.length;
-            data.doubleMentions = res.length * 2;
             deferred.resolve(data);
             console.log('data : ');
             console.log(data);
