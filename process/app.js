@@ -65,13 +65,13 @@ exports.getData = function(settings) {
             // return your data like this...
             data.mentions = res.length;
             deferred.resolve(data);
-            console.log('data : ');
-            console.log(data);
+            //console.log('data : ');
+            //console.log(data);
         }else{
             // return your data like this...
             deferred.resolve(data);
-            console.log('no data : ');
-            console.log(data);
+            //console.log('no data : ');
+            //console.log(data);
         }
 
     });
