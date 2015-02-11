@@ -36,8 +36,8 @@ exports.getLabel = function(property, settings){
 exports.getData = function(settings) {
 
     // this is the object saved from your the /input portion of the slab.
-    var searchTerm  = 'example';
-    var siteUrl     = 'http://www.dailymail.co.uk';
+    var searchTerm  = 'news';
+    var siteUrl     = 'http://news.bbc.co.uk';
 
     if(settings && settings.searchTerm && settings.siteUrl){
         searchTerm  = settings.searchTerm;
