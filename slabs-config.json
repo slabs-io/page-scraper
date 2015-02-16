@@ -3,7 +3,8 @@
   "description" : "A tool for scraping web pages and getting the number of mentions of a specific term.",
   "type" : "source",
   "connectionsIn" : 1,
-  "connectionsOut" : 3,
+  "connectionsOut" : -1,
+  "customIcon" : "fa-file-text-o",
   "schema" : {
     "type": "object",
     "properties" : {
