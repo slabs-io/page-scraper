@@ -20,7 +20,7 @@ exports.getLabel = function(property, settings){
     }
 
     if(property == 'mentions'){
-        return searchTerm + ' on the '+siteUrl;
+        return searchTerm + ' on '+ siteUrl;
     }
 
     return 'bad property name';
@@ -48,9 +48,9 @@ exports.getData = function(settings) {
     var deferred = Q.defer();
 
     var data = {
-        mentions : 0
+        value: 0,
+        url: siteUrl
     };
-
 
     scrap(siteUrl, function(err, $) {
 
@@ -62,16 +62,12 @@ exports.getData = function(settings) {
         var res = pageContents.match(new RegExp(searchTerm, 'gi'));
 
         if(res){
-            // return your data like this...
-            data.mentions = res.length;
-            deferred.resolve(data);
-            //console.log('data : ');
-            //console.log(data);
+            data.mentions = {
+                value: res.length
+            };
+            deferred.resolve([data]);
         }else{
-            // return your data like this...
             deferred.resolve(data);
-            //console.log('no data : ');
-            //console.log(data);
         }
 
     });

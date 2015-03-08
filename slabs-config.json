@@ -5,24 +5,10 @@
   "connectionsIn" : 1,
   "connectionsOut" : -1,
   "customIcon" : "fa-file-text-o",
-  "schema" : {
-    "type": "object",
-    "properties" : {
-      "searchTerm": {
-        "type": "string",
-        "default": "slabs",
-        "title": "Your search query",
-        "brief": "Query"
-      },
-      "siteUrl": {
-        "type": "string",
-        "minLength" : 8,
-        "pattern": "^(http[s]?:\/\/)(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}",
-        "validationMessage" : "This doesn't look like a proper URL ...",
-        "default": "http://www.slabs.io",
-        "title": "Site Url",
-        "brief": "URL"
-      }
+  "data":{
+    "schema":{
+      "value":"number",
+      "url":"url"
     }
   },
   "source": {
