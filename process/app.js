@@ -48,8 +48,10 @@ exports.getData = function(settings) {
     var deferred = Q.defer();
 
     var data = {
-        value: 0,
-        url: siteUrl
+        mentions:{
+            value: 0,
+            url: siteUrl
+        }
     };
 
     scrap(siteUrl, function(err, $) {
@@ -62,9 +64,7 @@ exports.getData = function(settings) {
         var res = pageContents.match(new RegExp(searchTerm, 'gi'));
 
         if(res){
-            data.mentions = {
-                value: res.length
-            };
+            data.mentions.value = res.length;
             deferred.resolve([data]);
         }else{
             deferred.resolve(data);
