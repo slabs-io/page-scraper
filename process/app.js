@@ -34,48 +34,60 @@ exports.getLabel = function(property, settings){
  * This function MUST exist and MUST return a promise.
  */
 exports.getData = function(settings) {
+    
+    /*
+        // todo - settings should update to allow array of searches
+        settings.searches = [
+            {   
+                term:'news',
+                url: 'http://news.bbc.co.uk'
+            }
+        ];
+        
+        return Q.all(settings.searches.map(scrape) );
+    */
+    var searches = [{term:settings.searchTerm, url:settings.siteUrl}];
+    return Q.all(searches.map(scrape))
+                .then(function(data){
+                    return {mentions:data};
+                });
 
-    // this is the object saved from your the /input portion of the slab.
-    var searchTerm  = 'news';
-    var siteUrl     = 'http://news.bbc.co.uk';
 
-    if(settings && settings.searchTerm && settings.siteUrl){
-        searchTerm  = settings.searchTerm;
-        siteUrl     = settings.siteUrl;
-    }
+};
+
+function scrape(search){
+    var searchTerm  = search.term;
+    var siteUrl     = search.url;
 
     // Slabs works on a promise system - for this we use the excellent 'Q' library.
     var deferred = Q.defer();
 
     var data = {
-        mentions:{
-            value: 0,
-            url: siteUrl
-        }
+        value: 0,
+        url: siteUrl
     };
 
     scrap(siteUrl, function(err, $) {
 
         if(err){
             console.error(err);
+            deferred.reject(err);
+            return;
         }
 
         var pageContents = $('body').html();
         var res = pageContents.match(new RegExp(searchTerm, 'gi'));
 
         if(res){
-            data.mentions.value = res.length;
-            deferred.resolve([data]);
+            data.value = res.length;
+            deferred.resolve(data);
         }else{
             deferred.resolve(data);
         }
 
     });
 
-
-    // Always return your promise here.
     return deferred.promise;
-
-};
+}
 
 
