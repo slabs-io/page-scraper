@@ -3,7 +3,6 @@
 var Q       = require('q');
 var scrap   = require('scrap');
 
-
 /**
  * getLabel - passes in the config object from the client.
  * This function MUST exist and MUST return a string.
@@ -35,27 +34,32 @@ exports.getLabel = function(property, settings){
  */
 exports.getData = function(settings) {
     
-    /*
-        // todo - settings should update to allow array of searches
-        settings.searches = [
-            {   
-                term:'news',
-                url: 'http://news.bbc.co.uk'
-            }
-        ];
-        
-        return Q.all(settings.searches.map(scrape) );
-    */
-    var searches = [{term:settings.searchTerm, url:settings.siteUrl}];
-    return Q.all(searches.map(scrape))
-                .then(function(data){
-                    return {mentions:data};
-                });
 
+  var urls = settings.siteUrl.replace(' ', '').split(",");
+
+  var searches = [];
+
+  urls.forEach(function(url){
+    searches.push({term:settings.searchTerm, url:url});
+  });
+
+  var calls = searches.map(scrape);
+
+  var deferred = Q.defer();
+
+  Q.all(calls)
+    .then(function(data){
+      deferred.resolve({mentions:data});
+    },function(err){
+      deferred.reject(err);
+    });
+
+  return deferred.promise;
 
 };
 
 function scrape(search){
+
     var searchTerm  = search.term;
     var siteUrl     = search.url;
 
@@ -67,9 +71,10 @@ function scrape(search){
         url: siteUrl
     };
 
-    scrap(siteUrl, function(err, $) {
+    scrap({url:siteUrl, timeout:5000}, function(err, $) {
 
         if(err){
+            console.log('Scrape Error');
             console.error(err);
             deferred.reject(err);
             return;
