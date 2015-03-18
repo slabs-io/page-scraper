@@ -25,12 +25,6 @@
       }
     }
   },
-  "data":{
-    "schema":{
-      "value":"number",
-      "url":"url"
-    }
-  },
   "source": {
     "label": "Core Slab",
     "url": "http://slabs.io/"

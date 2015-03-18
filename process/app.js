@@ -44,8 +44,31 @@ exports.getData = function(settings) {
       return $(selector).map(function() {
         return $(this).text();
       }).get();
-    }, function(news) {
-      console.log(news);
+    }, function(items) {
+
+      // create an array of objects
+      var data = [];
+      items.map(function(item){
+        data.push( {
+          scrape:item
+        });
+      });
+
+      // create a schema for the data
+      var dataSchema = {
+        scrape:{
+          title : 'Scraped Content',
+          type : 'text'
+        }
+      };
+
+      // Return data in this format
+      var returnObj = {
+        dataSchema : dataSchema,
+        data : data
+      };
+
+      deferred.resolve(returnObj);
     });
 
   return deferred.promise;
