@@ -18,6 +18,6 @@
   "homepage": "https://github.com/slabs-io/page-scraper",
   "dependencies": {
     "q": "^1.1.2",
-    "scrap": "^0.1.0"
+    "scraperjs": "^0.3.3"
   }
 }

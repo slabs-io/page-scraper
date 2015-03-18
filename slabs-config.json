@@ -1,6 +1,6 @@
 {
   "name" : "Page Scraper",
-  "description" : "A tool for scraping web pages and getting the number of mentions of a specific term.",
+  "description" : "A tool for scraping web pages and pulling the content from them.",
   "type" : "source",
   "connectionsIn" : 1,
   "connectionsOut" : -1,
@@ -8,12 +8,6 @@
   "schema" : {
     "type": "object",
     "properties" : {
-      "searchTerm": {
-        "type": "string",
-        "default": "slabs",
-        "title": "Your search query",
-        "brief": "Query"
-      },
       "siteUrl": {
         "type": "string",
         "minLength" : 8,
@@ -22,6 +16,12 @@
         "default": "http://www.slabs.io",
         "title": "Site Url",
         "brief": "URL"
+      },
+      "cssSelector": {
+        "type": "string",
+        "default": "h1",
+        "title": "CSS Selector to your content",
+        "brief": "Selector"
       }
     }
   },
