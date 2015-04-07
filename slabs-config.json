@@ -5,25 +5,10 @@
   "connectionsIn" : 1,
   "connectionsOut" : -1,
   "customIcon" : "fa-file-text-o",
-  "schema" : {
-    "type": "object",
-    "properties" : {
-      "siteUrl": {
-        "type": "string",
-        "minLength" : 8,
-        "pattern": "^(http[s]?:\/\/)(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}",
-        "validationMessage" : "This doesn't look like a proper URL ...",
-        "default": "http://www.slabs.io",
-        "title": "Site Url",
-        "brief": "URL"
-      },
-      "cssSelector": {
-        "type": "string",
-        "default": "h1",
-        "title": "CSS Selector to your content",
-        "brief": "Selector"
-      }
-    }
+  "hasSettings" : true,
+  "defaultSettings": {
+    "siteUrl":"http://www.slabs.io",
+    "cssSelector":"h1"
   },
   "source": {
     "label": "Core Slab",
