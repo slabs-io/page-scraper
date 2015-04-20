@@ -7,9 +7,10 @@
   "customIcon": "fa-file-text-o",
   "hasSettings": true,
   "defaultSettings": {
-    "propertyName" : "titles",
     "siteUrl": "http://www.slabs.io",
-    "cssSelector": "h1"
+    "properties":[
+      {"name":"titles", "selector":"h1"}
+    ]
   },
   "source": {
     "label": "Core Slab",
