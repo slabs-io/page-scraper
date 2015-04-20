@@ -12,10 +12,11 @@ var system = require('system');
 var args = system.args;
 var url = args[1];
 
-var slabscrapePath = 'http://labs.benbru.com/static/'
+var slabscrapePathJS = 'https://drive.google.com/file/d/0BwqELfvkfSBQT2toOVotN1ZXaDQ/view?usp=sharing'
+var slabscrapePathCss = 'https://drive.google.com/open?id=0BwqELfvkfSBQMllEcjBDZ2xVMHM&authuser=0';
 
 page.open(url, function(status){
-   page.evaluate(function(url, slabscrapePath){
+   page.evaluate(function(url, slabscrapePath, slabscrapePathCss){
       var base = document.createElement('base');
       base.href = url;
       document.head.insertBefore(base, document.head.firstChild);
@@ -26,7 +27,7 @@ page.open(url, function(status){
       });
       
       var l = document.createElement('link');
-       l.href = slabscrapePath + 'slabscrape.css';
+       l.href = slabscrapePathCss;
        l.type = 'text/css';
        l.rel = 'stylesheet';
     
@@ -38,9 +39,9 @@ page.open(url, function(status){
       document.body.insertBefore(tempNode, document.body.firstChild);
       
       var slabscrape = document.createElement('script');
-      slabscrape.src = slabscrapePath + 'slabscrape.js';
+      slabscrape.src = slabscrapePathJS;
       document.body.appendChild(slabscrape);
-   }, url, slabscrapePath);
+   }, url, slabscrapePathJS, slabscrapePathCss);
    console.log(page.frameContent);
    page.close();
    phantom.exit();
