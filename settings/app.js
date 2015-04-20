@@ -1,11 +1,12 @@
 var getContent = require('./page/getContent.js');
-var Q = require('q');
-exports.get = function(req){
+
+exports.get = function(req, res){
     if(req.query.src !== undefined){
-        return getContent(req.query.src);
+        getContent(req.query.src).then(function(data){
+            res.set('Content-Type', 'text/html');
+            res.end(data);
+        });
     }else{
-        var deferred = new Q.defer();
-        deferred.reject('src querystring required');
-        return deferred.promise;
+        res.status(400).end('query string src property required');
     }
 };
