@@ -4,6 +4,7 @@ var Q = require('q');
 var scraperjs = require('scraperjs');
 
 
+
 /**
  * getLabel - passes in the config object from the client.
  * This function MUST exist and MUST return a string.
