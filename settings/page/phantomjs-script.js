@@ -12,19 +12,21 @@ var system = require('system');
 var args = system.args;
 var url = args[1];
 
-var slabscrapePathJS = 'https://drive.google.com/file/d/0BwqELfvkfSBQT2toOVotN1ZXaDQ/view?usp=sharing'
-var slabscrapePathCss = 'https://drive.google.com/open?id=0BwqELfvkfSBQMllEcjBDZ2xVMHM&authuser=0';
+
+
+var slabscrapePathJS = 'http://static.slabs.io/pagescrape/0.1/slabscrape.js';
+var slabscrapePathCss = 'http://static.slabs.io/pagescrape/0.1/slabscrape.css';;
 
 page.open(url, function(status){
-   page.evaluate(function(url, slabscrapePath, slabscrapePathCss){
+   page.evaluate(function(url, slabscrapePathJS, slabscrapePathCss){
       var base = document.createElement('base');
       base.href = url;
       document.head.insertBefore(base, document.head.firstChild);
       
-      var scripts = document.getElementsByTagName('script');
-      [].forEach.call(scripts, function(script){
-         script.parentNode.removeChild(script);
-      });
+      // var scripts = document.getElementsByTagName('script');
+      // [].forEach.call(scripts, function(script){
+      //    script.parentNode.removeChild(script);
+      // });
       
       var l = document.createElement('link');
        l.href = slabscrapePathCss;
