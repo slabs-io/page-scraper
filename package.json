@@ -10,7 +10,10 @@
     "type": "git",
     "url": "https://github.com/slabs-io/page-scraper.git"
   },
-  "authors": ["Elliot Agro", "Ben Brunton <ben@slabs.io>"],
+  "authors": [
+    "Elliot Agro",
+    "Ben Brunton <ben@slabs.io>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/slabs-io/page-scraper/issues"
@@ -21,6 +24,7 @@
     "express": "^4.12.3",
     "phantomjs": "^1.9.16",
     "q": "^1.2.0",
+    "scraperjs": "^0.3.3",
     "xmldom": "^0.1.19"
   },
   "devDependencies": {

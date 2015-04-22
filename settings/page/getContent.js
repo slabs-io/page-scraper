@@ -4,13 +4,14 @@ var childProcess = require('child_process')
 var phantomjs = require('phantomjs')
 var binPath = phantomjs.path
 
-module.exports = function(url){
+module.exports = function(url, staticsPath){
 
   var deferred = Q.defer();
    
   var childArgs = [
     path.join(__dirname, 'phantomjs-script.js'),
-    url
+    url,
+    staticsPath
   ];
   
   var output = '';

@@ -11,22 +11,19 @@ var page = require('webpage').create();
 var system = require('system');
 var args = system.args;
 var url = args[1];
+var staticsPath = args[2];
 
 
-
-var slabscrapePathJS = 'http://static.slabs.io/pagescrape/0.1/slabscrape.js';
-var slabscrapePathCss = 'http://static.slabs.io/pagescrape/0.1/slabscrape.css';;
+// todo - move into configs
+var slabscrapePathJS = staticsPath + 'slabscrape.js';
+var slabscrapePathCss = staticsPath + 'slabscrape.css';
 
 page.open(url, function(status){
    page.evaluate(function(url, slabscrapePathJS, slabscrapePathCss){
       var base = document.createElement('base');
       base.href = url;
       document.head.insertBefore(base, document.head.firstChild);
-      
-      // var scripts = document.getElementsByTagName('script');
-      // [].forEach.call(scripts, function(script){
-      //    script.parentNode.removeChild(script);
-      // });
+
       
       var l = document.createElement('link');
        l.href = slabscrapePathCss;
@@ -40,9 +37,15 @@ page.open(url, function(status){
       tempNode.setAttribute('data-slabs-ignore', 'ignore');
       document.body.insertBefore(tempNode, document.body.firstChild);
       
+      var toolbar = document.createElement('toolbar');
+      document.body.appendChild(toolbar);
+      
+      //https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js
+      
       var slabscrape = document.createElement('script');
       slabscrape.src = slabscrapePathJS;
       document.body.appendChild(slabscrape);
+      
    }, url, slabscrapePathJS, slabscrapePathCss);
    console.log(page.frameContent);
    page.close();
