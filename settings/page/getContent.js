@@ -16,13 +16,14 @@ module.exports = function(url, staticsPath){
   
   var output = '';
    
-  var phantom = childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
-    if(err){
-        console.error(err);
-        deferred.reject(err);
-        return;
-    }
-
+  var phantom = childProcess.execFile(binPath, childArgs, 
+        {maxBuffer: 1024 * 500}, 
+        function(err, stdout, stderr) {
+          if(err){
+              console.error(err);
+              deferred.reject(err);
+              return;
+          }
   });
   
   phantom.stdout.on('data', function (data) {

@@ -15,38 +15,46 @@ var staticsPath = args[2];
 
 
 // todo - move into configs
-var slabscrapePathJS = staticsPath + 'slabscrape.js';
-var slabscrapePathCss = staticsPath + 'slabscrape.css';
+var slabscrapePath = staticsPath + 'index.html';
+var slabscrapeJS = staticsPath + 'slabscrape.js';
+var slabscrapeCSS = staticsPath + 'slabscrape.css';
 
 page.open(url, function(status){
-   page.evaluate(function(url, slabscrapePathJS, slabscrapePathCss){
+   page.evaluate(function(url, slabscrapePath, slabscrapeJS, slabscrapeCSS){
       var base = document.createElement('base');
       base.href = url;
       document.head.insertBefore(base, document.head.firstChild);
-
       
       var l = document.createElement('link');
-       l.href = slabscrapePathCss;
-       l.type = 'text/css';
-       l.rel = 'stylesheet';
+      l.href = slabscrapeCSS;
+      l.type = 'text/css';
+      l.rel = 'stylesheet';
     
-      document.head.appendChild(l);  
+      document.head.appendChild(l);
       
       var tempNode = document.createElement('div');
-      tempNode.className = 'slabscrape-dummy';
+      tempNode.className = 'slabscrape-dummy contracted slabscrape-header';
       tempNode.setAttribute('data-slabs-ignore', 'ignore');
       document.body.insertBefore(tempNode, document.body.firstChild);
       
-      var toolbar = document.createElement('toolbar');
-      document.body.appendChild(toolbar);
       
-      //https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js
+      var frame = document.createElement('iframe');
+      frame.src = slabscrapePath;
+      frame.className = 'slabscrape-popup slabscrape-ignore contracted slabscrape-header';
+      frame.setAttribute('data-slabs-ignore', 'ignore');
+      frame.frameborder = '0';
+      frame.scrolling = 'none';
+      frame.frameBorder = 0;
+		frame.scrolling = "no";
+		frame.setAttribute('margin', '0');
+		frame.setAttribute('allowTransparency', 'true');
+      document.body.appendChild(frame);
       
       var slabscrape = document.createElement('script');
-      slabscrape.src = slabscrapePathJS;
+      slabscrape.src = slabscrapeJS;
       document.body.appendChild(slabscrape);
       
-   }, url, slabscrapePathJS, slabscrapePathCss);
+   }, url, slabscrapePath, slabscrapeJS, slabscrapeCSS);
    console.log(page.frameContent);
    page.close();
    phantom.exit();
