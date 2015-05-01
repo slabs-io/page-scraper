@@ -12,4 +12,21 @@ var settings = {
 console.log('starting process...');
 app.getData(settings).then(function(data){
     console.log(data);
+
+
+
+    settings = {
+      url:'http://slabs.io',
+      groupSelector:'',
+      properties:[
+        {selector:'h1', name:'title'}  
+      ]
+    };
+    
+    console.log('process 2');
+    
+    app.getData(settings).then(function(data){
+      console.log(data);
+    });
 });
+

@@ -8,6 +8,7 @@
   "hasSettings": true,
   "defaultSettings": {
     "siteUrl": "http://www.slabs.io",
+    "groupSelector": "",
     "properties":[
       {"name":"titles", "selector":"h1"}
     ]

@@ -52,16 +52,36 @@ exports.getData = function (settings) {
 
 function pageFunction(settings){
     return function ($) {
-        return $(settings.groupSelector).map(function(){
-            var $this = $(this);
-            var group = {};
-            settings.properties.forEach(function(prop){
-                var item = $this.find(prop.selector);
-                group[prop.name] = item.text();
+        
+        var data;
+        
+        // todo - groups are diff from not grouped
+        if(settings.groupSelector === ''){
+            data = settings.properties.map(function(prop){
+               
+               return $(prop.selector).map(function(){
+                  var x = {};
+                  x[prop.name] = $(this).text();
+                  return x;
+               });
+            }).reduce(function(a, b){
+                return a.concat(b);
             });
-            
-            return group;
-        });
+        }else{
+            var groupSelector = settings.groupSelector || 'body';
+            data = $(groupSelector).map(function(){
+                var $this = $(this);
+                var group = {};
+                settings.properties.forEach(function(prop){
+                    var item = $this.find(prop.selector);
+                    group[prop.name] = item.text();
+                });
+                
+                return group;
+            });
+        }
+        
+        return data;
     }
 }
 
