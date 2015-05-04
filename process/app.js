@@ -60,9 +60,11 @@ function pageFunction(settings){
             data = settings.properties.map(function(prop){
                
                return $(prop.selector).map(function(){
-                  var x = {};
-                  x[prop.name] = $(this).text();
-                  return x;
+                    var x = {};
+                    x[prop.name] = addAttributes($(this));
+                    return x;
+               }).filter(function(attr){
+                   return attr !== null;
                });
             }).reduce(function(a, b){
                 return a.concat(b);
@@ -74,7 +76,10 @@ function pageFunction(settings){
                 var group = {};
                 settings.properties.forEach(function(prop){
                     var item = $this.find(prop.selector);
-                    group[prop.name] = item.text();
+                    var attributes = addAttributes(item);
+                    if(attributes){
+                        group[prop.name] = attributes;
+                    }
                 });
                 
                 return group;
@@ -91,4 +96,29 @@ function resolve(deferred){
             Array.prototype.slice.call(data));
     }
     
+}
+
+function addAttributes($this){
+    var x = {};
+    var text = $this.text();
+    var src = $this.attr('src');
+    var href = $this.attr('href');
+    
+    if(text){
+        x.text = text;    
+    }
+    
+    if(src){
+        x.src = src;
+    }
+
+    if(href){
+        x.href = href;    
+    }
+    
+    if(!text && !src && !href){
+        return null;
+    }
+    
+    return x;
 }
