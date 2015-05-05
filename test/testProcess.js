@@ -27,6 +27,24 @@ app.getData(settings).then(function(data){
     
     app.getData(settings).then(function(data){
       console.log(data);
+      
+      
+      settings = {
+        url:'http://slabs.io',
+        groupSelector:'',
+        properties:[
+          {selector:'h1', name:'title'},
+          {selector: 'a>img', name:'img'}
+        ]
+      };
+      
+      console.log('process 2');
+      
+      app.getData(settings).then(function(data){
+        console.log(data);
+        
+      });
+        
     });
 });
 

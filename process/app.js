@@ -67,7 +67,9 @@ function pageFunction(settings){
                    return attr !== null;
                });
             }).reduce(function(a, b){
-                return a.concat(b);
+                var aArr = Array.prototype.slice.call(a);
+                var bArr = Array.prototype.slice.call(b);
+                return aArr.concat(bArr);
             });
         }else{
             var groupSelector = settings.groupSelector || 'body';
@@ -87,14 +89,14 @@ function pageFunction(settings){
         }
         
         return data;
-    }
+    };
 }
 
 function resolve(deferred){
     return function(data){
         deferred.resolve(
             Array.prototype.slice.call(data));
-    }
+    };
     
 }
 
