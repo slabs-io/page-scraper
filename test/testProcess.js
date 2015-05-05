@@ -1,50 +1,44 @@
 var app = require('../process/app.js');
+var Q = require('q');
 
-var settings = {
-  url: 'http://news.ycombinator.com',
-  groupSelector:'tr.athing',
-  properties:[
-        {selector:'td.title>a', name:'title'},
-        {selector:'td.title>span.sitebit.comhead', name:'site'}
-    ]
-};
+var testCases = [];
 
-console.log('starting process...');
-app.getData(settings).then(function(data){
-    console.log(data);
+testCases.push(app.getData({
+    url: 'http://news.ycombinator.com',
+    groupSelector: 'tr.athing',
+    properties: [{
+        selector: 'td.title>a',
+        name: 'title'
+    }, {
+        selector: 'td.title>span.sitebit.comhead',
+        name: 'site'
+    }]
+}));
 
+testCases.push(app.getData({
+    url: 'http://slabs.io',
+    groupSelector: '',
+    properties: [{
+        selector: 'h1',
+        name: 'title'
+    }]
+}));
 
+testCases.push(app.getData({
+    url: 'http://slabs.io',
+    groupSelector: '',
+    properties: [{
+        selector: 'h1',
+        name: 'title'
+    }, {
+        selector: 'a>img',
+        name: 'img'
+    }]
+}));
 
-    settings = {
-      url:'http://slabs.io',
-      groupSelector:'',
-      properties:[
-        {selector:'h1', name:'title'}  
-      ]
-    };
-    
-    console.log('process 2');
-    
-    app.getData(settings).then(function(data){
-      console.log(data);
-      
-      
-      settings = {
-        url:'http://slabs.io',
-        groupSelector:'',
-        properties:[
-          {selector:'h1', name:'title'},
-          {selector: 'a>img', name:'img'}
-        ]
-      };
-      
-      console.log('process 2');
-      
-      app.getData(settings).then(function(data){
-        console.log(data);
-        
-      });
-        
+Q.all(testCases).then(function (results) {
+    results.forEach(function(result, i){
+       console.log('results for process ' + i);
+       console.log(result);
     });
 });
-

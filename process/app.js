@@ -88,7 +88,7 @@ function pageFunction(settings){
             });
         }
         
-        return data;
+        return removeEmptyObj(data);
     };
 }
 
@@ -123,4 +123,10 @@ function addAttributes($this){
     }
     
     return x;
+}
+
+function removeEmptyObj(arr){
+    return Array.prototype.slice.call(arr).filter(function(obj){
+       return Object.keys(obj).length > 0; 
+    });
 }
