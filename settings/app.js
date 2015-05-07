@@ -1,5 +1,6 @@
 var getContent = require('./page/getContent.js');
 var staticsPath = require('./config').staticsPath;
+var scraper = require('../process/app.js');
 
 exports.get = function(req, res){
     if(req.query.src !== undefined){
@@ -10,4 +11,13 @@ exports.get = function(req, res){
     }else{
         res.status(400).end('query string src property required');
     }
+};
+
+exports.post = function(req, res){
+    scraper.getData(req.body).then(function(data){
+        res.json({
+            data: data,
+            success:'success'
+        }); 
+    });
 };
