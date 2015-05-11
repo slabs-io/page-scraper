@@ -33,9 +33,18 @@ exports.getLabel = function (property, settings) {
  * getData - passes in the config object from the client.
  * This function MUST exist and MUST return a promise.
  */
-exports.getData = function (settings) {
+exports.getData = function (settings, data) {
 
-    return Q.all(settings.url.split(',').map(execute(settings)));
+    // the only data the pagescrape could possibly take is for the url
+    var urls = settings.url.split(',').map(function(url){
+        return url.trim();
+    });
+    
+    if(data.length > 0){
+        urls = data[0];
+    }
+    
+    return Q.all(urls.map(execute(settings)));
     
 };
 
