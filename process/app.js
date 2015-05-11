@@ -35,20 +35,21 @@ exports.getLabel = function (property, settings) {
  */
 exports.getData = function (settings) {
 
-    var deferred = Q.defer();
-
-    var url = settings.url;
-    // var selector = settings.cssSelector;
-    // var propertyName = settings.propertyName;
-
-    console.log('scraping begins');
-    scraperjs.StaticScraper.create(url)
-        .scrape(pageFunction(settings), 
-            resolve(deferred));
-
-    return deferred.promise;
-
+    return Q.all(settings.url.split(',').map(execute(settings)));
+    
 };
+
+function execute(settings){
+    return function(url){
+        var deferred = Q.defer();
+        
+        scraperjs.StaticScraper.create(url)
+            .scrape(pageFunction(settings), 
+                resolve(deferred));
+
+        return deferred.promise;
+    }
+}
 
 function pageFunction(settings){
     return function ($) {
