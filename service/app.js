@@ -4,7 +4,7 @@ var scraperjs = require('scraperjs');
 exports.start = function(settings){
     var deferred = Q.defer();
     
-    var messages = settings.url.map(function(url, i){
+    var messages = settings.urls.map(function(url, i){
         return {
            msg: 'job',
            jobId: url + i + Date.now(),
@@ -28,7 +28,8 @@ exports.execute = function(settings){
     scraperjs.StaticScraper.create(settings.url)
         .scrape(pageFunction(settings), 
             function(result){
-               deferred.resolve({msg:'save', data:toArray(result)});
+                var msg = {msg:'save', data:toArray(result)};
+               deferred.resolve([msg]);
             });
 
     return deferred.promise;
