@@ -1,26 +1,8 @@
 var Q = require('q');
 var scraperjs = require('scraperjs');
 
-exports.start = function(settings){
-    var deferred = Q.defer();
-    
-    var messages = settings.urls.map(function(url, i){
-        return {
-           msg: 'job',
-           jobId: url + i + Date.now(),
-           settings:{
-               url: url,
-               properties: settings.properties,
-               parentSelector: settings.parentSelector,
-               groupSelector: settings.groupSelector
-           }
-       };
-    });
-    
-    deferred.resolve(messages);
-    
-    return deferred.promise;
-};
+exports.start = splitUrls;
+exports.update = splitUrls;
 
 exports.execute = function(settings){
     var deferred = Q.defer();
@@ -34,6 +16,23 @@ exports.execute = function(settings){
 
     return deferred.promise;
 };
+
+function splitUrls(settings){
+    return Q.fcall(function(){
+       return  settings.urls.map(function(url, i){
+            return {
+               msg: 'job',
+               jobId: url + i + Date.now(),
+               settings:{
+                   url: url,
+                   properties: settings.properties,
+                   parentSelector: settings.parentSelector,
+                   groupSelector: settings.groupSelector
+               }
+           };
+        });
+    });
+}
 
 function pageFunction(settings){
     return function ($) {

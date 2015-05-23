@@ -1,6 +1,9 @@
+// pagescrape settings endpoints
+
 var getContent = require('./page/getContent.js');
 var staticsPath = require('./config').staticsPath;
-var scraper = require('../process/app.js');
+var request = require('request');
+
 
 exports.get = function(req, res){
     if(req.query.src !== undefined){
@@ -8,16 +11,33 @@ exports.get = function(req, res){
             res.set('Content-Type', 'text/html');
             res.end(data);
         });
-    }else{
-        res.status(400).end('query string src property required');
+    }else if(req.query.networkId && req.query.slabConfigId){
+        var url = 'http://services.slabs.io/slab/trawler/' 
+            + req.query.networkId + '/' + req.query.slabConfigId;
+        request({
+            method: 'GET',
+            url: url
+        }).pipe(res);
+    }else {
+        res.status(400).end('query paramaters required');
     }
 };
 
+
+// set up new page scrape service
 exports.post = function(req, res){
-    scraper.getData(req.body).then(function(data){
-        res.json({
-            data: data,
-            success:'success'
-        }); 
-    });
+    var slabConfigId = req.body.slabConfigId;
+    var networkId = req.body.networkId;
+    var settings = req.body.settings;
+    
+    request({
+        method: 'POST',
+        url:'http://services.slabs.io/slab/trawler',
+        body:{
+            slabId: slabConfigId,
+            networkId: networkId,
+            settings: settings
+        },
+        json:true
+    }).pipe(res);
 };
